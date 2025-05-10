@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - preload banner
+  -->
+  <link rel="preload" href="./assets/images/hero-banner.png" as="image">
+
+</head>
+<style>
+  /* Filter Button Styles */
+  .filter-list {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .filter-btn.active {
+    background-color: #007BFF;
+    color: white;
+  }
+
+  .filter-btn:hover {
+    background-color: #ccc;
+  }
+
+  /* Collection Layout (Grid) */
+  .collection-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 products per row */
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .product-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-card {
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .product-card h3 {
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .product-card .btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .product-card .btn:hover {
+    background-color: #0056b3;
+  }
+
+  .product-card ion-icon {
+    font-size: 20px;
+  }
+
+  .collection-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 per row on large screens */
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .product-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  /* Product card styling */
+  .product-card {
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .product-card h3 {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+
+  .product-card .btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .product-card .btn:hover {
+    background-color: #0056b3;
+  }
+
+  .product-card ion-icon {
+    font-size: 20px;
+  }
+
+  /* RESPONSIVE DESIGN */
+
+  /* Medium devices (tablets, 768px and up) */
+  @media (max-width: 1024px) {
+    .collection-list {
+      grid-template-columns: repeat(2, 1fr);
+      /* 2 per row on tablets */
+    }
+  }
+
+  /* Small devices (phones) */
+  @media (max-width: 600px) {
+    .collection-list {
+      grid-template-columns: 1fr;
+      /* 1 per row on mobile */
+    }
+
+    .product-card {
+      height: 200px;
+    }
+  }
+
+  .section-title {
+    text-align: center;
+  }
+
+  .product-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border: 1px solid #eee;
+  }
+
+  .product-item:hover {
+    transform: translateY(-5px);
+    /* lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    /* deeper shadow on hover */
+    border-color: #ccc;
+  }
+
+  .product-card {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+
+  .card-content h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+  }
+
+  .card-price {
+    font-weight: bold;
+    color: #007BFF;
+    font-size: 16px;
+  }
+
+  .product-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Container to control layout */
+  .collection-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* responsive grid */
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  /* Individual product cards */
+  .product-item {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+  }
+
+  .product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Card with background image */
+  .product-card {
+    background-size: cover;
+    /* Ensure full coverage */
+    background-position: center;
+    /* Center image */
+    background-repeat: no-repeat;
+    height: 400px;
+    /* Increase height for better visibility */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    color: #fff;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .product-card::before {
+    display: none;
+    /* just to test if gradient hides image */
+  }
+
+  /* Content on top of background */
+  .product-card .card-title,
+  .product-card .btn {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .btn.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;
+    color: #000;
+    padding: 8px 14px;
+    font-size: 0.875rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn.btn-secondary:hover {
+    background-color: #f0f0f0;
+  }
+
+  .cta-card {
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    padding: 40px 30px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #ffffff40;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .cta-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-color: #fff;
+  }
+
+  .cta-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    z-index: 0;
+  }
+
+  .cta-card * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nightwear-cta {
+    background-image: url('./assets/images/nighty-1.jpg');
+  }
+
+  .Kitchen-Utensils-cta {
+    background-image: url('./assets/images/Kitchen Utensils.jpg');
+  }
+
+
+  /* Dropdown base style */
+  .navbar-item.dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+    min-width: 180px;
+  }
+
+  .dropdown-link {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .dropdown-link:hover {
+    background-color: #f0f0f0;
+  }
+
+  /* Show dropdown on hover */
+  .navbar-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  /*pagination*/
+
+
+.pagination button {
+  padding: 8px 12px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.pagination button:hover {
+  background: #ddd;
+}
+
+.pagination button.active-page {
+  background: #3498db;
+  color: white;
+}
+
+.pagination span {
+  margin: 0 5px;
+}
+
+</style>
+
+<body id="top">
+
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <div class="overlay" data-overlay></div>
+
+      <a href="#" class="logo">
+        <img src="./assets/images/export_logo.jpg" width="160" height="80" alt="Footcap logo">
+      </a>
+
+      <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+
+        <a href="#" class="logo">
+          <img src="./assets/images/export_logo.jpg" width="160" height="80" alt="Footcap logo">
+        </a>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="index.html" class="navbar-link">Home</a>
+          </li>
+
+          <li class="navbar-item dropdown">
+            <a href="#" class="navbar-link">Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html" class="dropdown-link">E-Commerce</a></li>
+              <li><a href="export.html" class="dropdown-link">Exports</a></li>
+              <li><a href="digital-marketing.html" class="dropdown-link">Digital Marketing</a></li>
+
+            </ul>
+          </li>
+
+          <li class="navbar-item dropdown">
+            <a href="#" class="navbar-link">Products</a>
+            <ul class="dropdown-menu">
+              <li><a href="clothes.html" class="dropdown-link">Clothes</a></li>
+              <li><a href="home_applicances.html" class="dropdown-link">Kitchen Utensils</a></li>
+
+            </ul>
+          </li>
+
+
+          <li class="navbar-item">
+            <a href="about.html" class="navbar-link">About</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="contact.html" class="navbar-link">Contact</a>
+          </li>
+
+      </nav>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero" id="hero-section" style="background-image: url('./assets/images/banner.jpg')">
+        <div class="container">
+          <h2 class="h1 hero-title" id="hero-title">
+            Discover What's New <strong>This Season</strong>
+          </h2>
+
+          <p class="hero-text" id="hero-text">
+            Fresh arrivals, exclusive deals, and handpicked favorites — everything you need to elevate your everyday.
+            Shop the latest now!
+          </p>
+
+          <button class="btn btn-primary" id="hero-button">
+            <a href="#productList"><span>Explore Now</span></a>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      </section>
+
+
+
+
+
+
+
+      <!-- 
+        - #COLLECTION
+      -->
+
+      <section class="section collection">
+        <h2 class="h2 section-title">Bestsellers Products</h2>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #PRODUCT
+      -->
+
+      <div class="container">
+
+    <!-- Filter Buttons -->
+    <ul class="filter-list">
+      <li><button class="filter-btn active" data-filter="all">All</button></li>
+      <li><button class="filter-btn" data-filter="nightwear">Nightwear</button></li>
+      <li><button class="filter-btn" data-filter="Kitchen-Utensils">Kitchen Utensils</button></li>
+    </ul>
+
+    <!-- Product List (Grid Layout) -->
+    <ul class="collection-list" id="productList">
+      <!-- Nightwear Products -->
+      <li class="nightwear product-item">
+        <div class="product-card" style="background-image: url('./assets/images/nighty_1.jpg')">
+          <h3>Nightwear Product 1</h3>
+          <a href="product_details.html" class="btn"
+            onclick="storeProduct('Nightwear Product 1', './assets/images/nighty_1.jpg', '₹799', 'Nightwear')">
+            <span>Explore</span>
+          </a>
+        </div>
+      </li>
+      <li class="nightwear product-item">
+        <div class="product-card" style="background-image: url('./assets/images/nighty-2.jpg')">
+          <h3>Nightwear Product 2</h3>
+          <a href="product_details.html" class="btn"
+            onclick="storeProduct('Nightwear Product 2', './assets/images/nighty-2.jpg', '₹699', 'Nightwear')">
+            <span>Explore</span>
+          </a>
+        </div>
+      </li>
+      <li class="nightwear product-item">
+        <div class="product-card" style="background-image: url('./assets/images/nighty-3.jpg')">
+          <h3>Nightwear Product 3</h3>
+          <a href="product_details.html" class="btn"
+            onclick="storeProduct('Nightwear Product 3', './assets/images/nighty-3.jpg', '₹599', 'Nightwear')">
+            <span>Explore</span>
+          </a>
+        </div>
+      </li>
+      <li class="nightwear product-item">
+        <div class="product-card" style="background-image: url('./assets/images/nighty-4.jpg')">
+          <h3>Nightwear Product 4</h3>
+          <a href="product_details.html" class="btn"
+            onclick="storeProduct('Nightwear Product 4', './assets/images/nighty-4.jpg', '₹499', 'Nightwear')">
+            <span>Explore</span>
+          </a>
+        </div>
+      </li>
+      <!-- Home Essentials Products -->
+      <li class="Kitchen-Utensils product-item">
+        <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-1.jpg')">
+          <h3 class="h4 card-title">Home Essential Product 1</h3>
+          <a href="#" class="btn btn-secondary">
+            <span>Explore</span>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+      </li>
+      <li class="Kitchen-Utensils product-item">
+        <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-2.jpg')">
+          <h3 class="h4 card-title">Home Essential Product 2</h3>
+          <a href="#" class="btn btn-secondary">
+            <span>Explore</span>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+      </li>
+      <li class="Kitchen-Utensils product-item">
+        <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-3.jpg')">
+          <h3 class="h4 card-title">Home Essential Product 3</h3>
+          <a href="#" class="btn btn-secondary">
+            <span>Explore</span>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+      </li>
+      <li class="Kitchen-Utensils product-item">
+        <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-4.jpg')">
+          <h3 class="h4 card-title">Home Essential Product 4</h3>
+          <a href="#" class="btn btn-secondary">
+            <span>Explore</span>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Pagination -->
+  <div id="pagination" class="pagination" style="margin-top: 30px; display: flex; justify-content: center; gap: 10px;"></div>
+
+
+
+
+
+
+
+
+
+      <!-- 
+        - #CTA
+      -->
+
+      <section class="section cta">
+        <div class="container">
+          <ul class="cta-list">
+
+            <!-- Nightwear CTA -->
+            <li>
+              <div class="cta-card nightwear-cta">
+                <p class="card-subtitle">Nightwear Collection</p>
+                <h3 class="h2 card-title">The Summer Sale Off 50%</h3>
+                <a href="#" class="btn btn-link">
+                  <span>Shop Now</span>
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </li>
+
+            <!-- Home Essentials CTA -->
+            <li>
+              <div class="cta-card Kitchen-Utensils-cta">
+                <p class="card-subtitle">Home Essentials</p>
+                <h3 class="h2 card-title">Makes Yourself Keep Sporty</h3>
+                <a href="#" class="btn btn-link">
+                  <span>Shop Now</span>
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+
+
+
+
+
+      <!-- 
+        - #SPECIAL
+      -->
+
+
+
+
+
+
+
+      <!-- 
+        - #SERVICE
+      -->
+
+      <!-- <section class="section service">
+        <div class="container">
+
+          <ul class="service-list">
+
+
+            <li class="service-item">
+              <div class="service-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/service-2.png" width="43" height="35" loading="lazy" alt="Service icon">
+                </div>
+
+                <div>
+                  <h3 class="h4 card-title">Quick Payment</h3>
+
+                  <p class="card-text">
+                    100% secure payment
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/service-3.png" width="40" height="40" loading="lazy" alt="Service icon">
+                </div>
+
+                <div>
+                  <h3 class="h4 card-title">Free Returns</h3>
+
+                  <p class="card-text">
+                    Money back in 30 days
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/service-4.png" width="40" height="40" loading="lazy" alt="Service icon">
+                </div>
+
+                <div>
+                  <h3 class="h4 card-title">24/7 Support</h3>
+
+                  <p class="card-text">
+                    Get Quick Support
+                  </p>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section> -->
+
+
+
+
+
+      <!-- 
+        - #INSTA POST
+      -->
+
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+    <div class="footer-top section">
+      <div class="container">
+        <!-- Footer Brand Section -->
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <img src="./assets/images/export_logo.jpg" width="160" height="80" alt="Footcap logo">
+          </a>
+
+          <!-- Social Media Links -->
+          <ul class="social-list">
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+
+        <!-- Footer Contact Section -->
+        <div class="footer-link-box">
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">Contact Us</p>
+            </li>
+            <li>
+              <address class="footer-link">
+                <ion-icon name="location"></ion-icon>
+                <span class="footer-link-text">
+                  XYZ, Madurai
+                </span>
+              </address>
+            </li>
+            <li>
+              <a href="tel:+557343673257" class="footer-link">
+                <ion-icon name="call"></ion-icon>
+                <span class="footer-link-text">+91 8825861063</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:footcap@help.com" class="footer-link">
+                <ion-icon name="mail"></ion-icon>
+                <span class="footer-link-text">krexpo0212@gmail.com</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Section -->
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">
+          &copy; 2025 <a href="#" class="copyright-link">krexpo</a>. All Rights Reserved
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+
+  <!-- 
+    - #GO TO TOP
+  -->
+
+  <a href="#top" class="go-top-btn" data-go-top>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

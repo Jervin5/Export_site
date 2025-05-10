@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - preload banner
+  -->
+  <link rel="preload" href="./assets/images/hero-banner.png" as="image">
+
+</head>
+<style>
+  /* Filter Button Styles */
+  .filter-list {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .filter-btn.active {
+    background-color: #007BFF;
+    color: white;
+  }
+
+  .filter-btn:hover {
+    background-color: #ccc;
+  }
+
+  /* Collection Layout (Grid) */
+  .collection-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 products per row */
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .product-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-card {
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .product-card h3 {
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .product-card .btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .product-card .btn:hover {
+    background-color: #0056b3;
+  }
+
+  .product-card ion-icon {
+    font-size: 20px;
+  }
+
+  .collection-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 per row on large screens */
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .product-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  /* Product card styling */
+  .product-card {
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .product-card h3 {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+
+  .product-card .btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .product-card .btn:hover {
+    background-color: #0056b3;
+  }
+
+  .product-card ion-icon {
+    font-size: 20px;
+  }
+
+  /* RESPONSIVE DESIGN */
+
+  /* Medium devices (tablets, 768px and up) */
+  @media (max-width: 1024px) {
+    .collection-list {
+      grid-template-columns: repeat(2, 1fr);
+      /* 2 per row on tablets */
+    }
+  }
+
+  /* Small devices (phones) */
+  @media (max-width: 600px) {
+    .collection-list {
+      grid-template-columns: 1fr;
+      /* 1 per row on mobile */
+    }
+
+    .product-card {
+      height: 200px;
+    }
+  }
+
+  .section-title {
+    text-align: center;
+  }
+
+  .product-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border: 1px solid #eee;
+  }
+
+  .product-item:hover {
+    transform: translateY(-5px);
+    /* lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    /* deeper shadow on hover */
+    border-color: #ccc;
+  }
+
+  .product-card {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+
+  .card-content h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+  }
+
+  .card-price {
+    font-weight: bold;
+    color: #007BFF;
+    font-size: 16px;
+  }
+
+  .product-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Container to control layout */
+  .collection-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* responsive grid */
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  /* Individual product cards */
+  .product-item {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+  }
+
+  .product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Card with background image */
+  .product-card {
+    background-size: cover;
+    /* Ensure full coverage */
+    background-position: center;
+    /* Center image */
+    background-repeat: no-repeat;
+    height: 400px;
+    /* Increase height for better visibility */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    color: #fff;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .product-card::before {
+    display: none;
+    /* just to test if gradient hides image */
+  }
+
+  /* Content on top of background */
+  .product-card .card-title,
+  .product-card .btn {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .btn.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;
+    color: #000;
+    padding: 8px 14px;
+    font-size: 0.875rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn.btn-secondary:hover {
+    background-color: #f0f0f0;
+  }
+
+  .cta-card {
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    padding: 40px 30px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #ffffff40;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .cta-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-color: #fff;
+  }
+
+  .cta-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    z-index: 0;
+  }
+
+  .cta-card * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nightwear-cta {
+    background-image: url('./assets/images/nighty-1.jpg');
+  }
+
+  .Kitchen-Utensils-cta {
+    background-image: url('./assets/images/Kitchen Utensils.jpg');
+  }
+
+
+  /* Dropdown base style */
+  .navbar-item.dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+    min-width: 180px;
+  }
+
+  .dropdown-link {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .dropdown-link:hover {
+    background-color: #f0f0f0;
+  }
+
+  /* Show dropdown on hover */
+  .navbar-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  /* Base layout: desktop */
+  .details-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 50px auto;
+    background: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: row;
+  }
+
+  .product-image {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .product-image img {
+    width: 100%;
+    max-width: 400px;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-info {
+    flex: 1;
+    padding: 40px;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-info h1 {
+    margin-bottom: 10px;
+  }
+
+  .price {
+    color: #e53935;
+    font-size: 24px;
+    margin: 10px 0;
+  }
+
+  .info-label {
+    margin-top: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .sizes,
+  .colors {
+    display: flex;
+    gap: 10px;
+  }
+
+  .sizes button {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s ease;
+  }
+
+  .sizes button:hover,
+  .sizes button.active {
+    border-color: #2874f0;
+    background: #e3f2fd;
+  }
+
+  .colors button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 0;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .colors button.active {
+    border-color: #2874f0;
+    box-shadow: 0 0 0 2px #e3f2fd;
+  }
+
+  .color-blue {
+    background-color: #3f51b5;
+  }
+
+  .color-red {
+    background-color: #e53935;
+  }
+
+  .color-green {
+    background-color: #43a047;
+  }
+
+  .actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .actions button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s ease;
+  }
+
+  .buy-now {
+    background-color: #ff5722;
+    color: white;
+  }
+
+  .buy-now:hover {
+    background-color: #e64a19;
+  }
+
+  .add-cart {
+    background-color: #2874f0;
+    color: white;
+  }
+
+  .add-cart:hover {
+    background-color: #1565c0;
+  }
+
+  /* Similar Products layout */
+  .similar-products {
+    margin-top: 20px;
+  }
+
+  .similar-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+  }
+
+  .similar-card {
+    flex: 0 0 auto;
+    width: 180px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+  }
+
+  .similar-card img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .similar-card p {
+    margin: 10px 0 5px;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .similar-card span {
+    color: #e53935;
+    font-size: 16px;
+  }
+
+  /* Mobile responsiveness */
+  @media screen and (max-width: 900px) {
+    .details-container {
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .product-image,
+    .product-info {
+      width: 100%;
+      padding: 20px;
+    }
+
+    .product-image {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-image img {
+      max-width: 100%;
+      max-height: 300px;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .actions {
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .actions button {
+      width: 100%;
+    }
+
+    .similar-list {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+
+    .similar-card {
+      min-width: 140px;
+    }
+  }
+</style>
+
+<body id="top">
+
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <div class="overlay" data-overlay></div>
+
+      <a href="#" class="logo">
+        <img src="./assets/images/export_logo.jpg" width="160" height="50" alt="Footcap logo">
+      </a>
+
+      <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+
+        <a href="#" class="logo">
+          <img src="./assets/images/export_logo.jpg" width="190" height="80" alt="Footcap logo">
+        </a>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="index.html" class="navbar-link">Home</a>
+          </li>
+
+
+          <li class="navbar-item dropdown">
+            <a href="#" class="navbar-link">Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html" class="dropdown-link">E-Commerce</a></li>
+              <li><a href="export.html" class="dropdown-link">Exports</a></li>
+              <li><a href="digital-marketing.html" class="dropdown-link">Digital Marketing</a></li>
+
+            </ul>
+          </li>
+
+          <li class="navbar-item dropdown">
+            <a href="#" class="navbar-link">Products</a>
+            <ul class="dropdown-menu">
+              <li><a href="clothes.html" class="dropdown-link">Clothes</a></li>
+              <li><a href="home_applicances.html" class="dropdown-link">Kitchen Utensils</a></li>
+
+            </ul>
+          </li>
+
+
+
+          <li class="navbar-item">
+            <a href="about.html" class="navbar-link">About</a>
+          </li>
+
+
+          <li class="navbar-item">
+            <a href="contact.html" class="navbar-link">Contact</a>
+          </li>
+
+      </nav>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <!-- <section class="section hero" id="hero-section" style="background-image: url('./assets/images/banner.jpg')">
+        <div class="container">
+          <h2 class="h1 hero-title" id="hero-title">
+            Discover What's New <strong>This Season</strong>
+          </h2>
+      
+          <p class="hero-text" id="hero-text">
+            Fresh arrivals, exclusive deals, and handpicked favorites — everything you need to elevate your everyday.
+            Shop the latest now!
+          </p>
+      
+          <button class="btn btn-primary" id="hero-button">
+            <span>Explore Now</span>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      </section> -->
+
+
+
+
+
+
+
+      <!-- 
+        - #COLLECTION
+      -->
+
+      <section class="section collection">
+        <h2 class="h2 section-title">Bestsellers Products</h2>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #PRODUCT
+      -->
+
+      <div class="container">
+
+        <div class="details-container">
+          <div class="product-image">
+            <img src="" alt="">
+          </div>
+
+          <div class="product-info">
+            <h1></h1>
+            <div class="price"></div>
+            <div class="category"></div>
+            <p class="description"></p>
+
+            <div class="info-label">Select Size</div>
+            <div class="sizes">
+              <button onclick="selectSize(this)">S</button>
+              <button onclick="selectSize(this)">M</button>
+              <button onclick="selectSize(this)">L</button>
+              <button onclick="selectSize(this)">XL</button>
+            </div>
+
+            <div class="info-label">Choose Color</div>
+            <div class="colors">
+              <button class="color-blue" onclick="selectColor(this)" style="background:#3f51b5;"></button>
+              <button class="color-red" onclick="selectColor(this)" style="background:#e53935;"></button>
+              <button class="color-green" onclick="selectColor(this)" style="background:#43a047;"></button>
+            </div>
+
+            <div class="actions">
+              <button class="add-cart">Add to Cart</button>
+              <button class="buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+    <div class="footer-top section">
+      <div class="container">
+        <!-- Footer Brand Section -->
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <img src="./assets/images/export_logo.jpg" width="160" height="100" alt="Footcap logo">
+          </a>
+
+          <!-- Social Media Links -->
+          <ul class="social-list">
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+
+        <!-- Footer Contact Section -->
+        <div class="footer-link-box">
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">Contact Us</p>
+            </li>
+            <li>
+              <address class="footer-link">
+                <ion-icon name="location"></ion-icon>
+                <span class="footer-link-text">
+                  XYZ, Madurai
+                </span>
+              </address>
+            </li>
+            <li>
+              <a href="tel:+557343673257" class="footer-link">
+                <ion-icon name="call"></ion-icon>
+                <span class="footer-link-text">+91 8825861063</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:footcap@help.com" class="footer-link">
+                <ion-icon name="mail"></ion-icon>
+                <span class="footer-link-text">krexpo0212@gmail.com</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Section -->
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">
+          &copy; 2025 <a href="#" class="copyright-link">krexpo</a>. All Rights Reserved
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+
+  <!-- 
+    - #GO TO TOP
+  -->
+
+  <a href="#top" class="go-top-btn" data-go-top>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

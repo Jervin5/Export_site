@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <style>
+        /* Styling for hero section */
+        .hero {
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            background-color: #ff5722;
+            color: white;
+            padding: 10px 25px;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .btn-primary ion-icon {
+            margin-left: 10px;
+        }
+
+        /* About Cards Section */
+        .about-cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            width: 30%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            color: #ff5722;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #333;
+        }
+
+
+        /* Hero Section Styles */
+        .hero {
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-text ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .hero-text li {
+            font-size: 16px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: #ff5722;
+            color: white;
+            padding: 10px 25px;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .btn-primary ion-icon {
+            margin-left: 10px;
+        }
+
+        /* About Cards Styles */
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            color: #ff5722;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 28px;
+                color: white;
+            }
+
+            .hero-text {
+                font-size: 16px;
+                color: white;
+            }
+
+            .btn-primary {
+                font-size: 14px;
+                padding: 8px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 24px;
+            }
+
+            .hero-text {
+                font-size: 14px;
+                color: white;
+            }
+
+            .btn-primary {
+                font-size: 12px;
+                padding: 6px 15px;
+            }
+        }
+
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1,
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Section title styling */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        /* Section text styling */
+        .section-text {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* About Cards container */
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 cards in a row */
+            gap: 30px;
+            justify-items: center;
+        }
+
+        /* Card styling */
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            /* Makes the card square */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Make the grid responsive */
+        @media screen and (max-width: 768px) {
+            .about-cards {
+                grid-template-columns: 1fr 1fr;
+                /* 2 cards in a row on smaller screens */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .about-cards {
+                grid-template-columns: 1fr;
+                /* 1 card per row on mobile */
+            }
+        }
+
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1,
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Section title styling */
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            /* Increased title size */
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Section text styling */
+        .section-text {
+            text-align: center;
+            font-size: 1.3rem;
+            /* Slightly bigger text */
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1,
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Section title styling */
+        .section-title {
+            text-align: center;
+            font-size: 3.2rem;
+            /* Increased title size for better visibility */
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Section text styling */
+        .section-text {
+            text-align: center;
+            font-size: 1.4rem;
+            /* Slightly bigger text for better readability */
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* About Cards container */
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 cards in a row */
+            gap: 40px;
+            /* Increased gap for better spacing */
+            justify-items: center;
+            margin-bottom: 50px;
+        }
+
+        /* Card styling */
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 350px;
+            /* Increased max-width to make the cards larger */
+            padding: 30px;
+            /* Increased padding for better spacing inside the card */
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            /* Prevent overflow of text */
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            /* Bigger hover effect */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            /* More prominent hover shadow */
+        }
+
+        .card-icon {
+            font-size: 4.5rem;
+            /* Increased icon size */
+            margin-bottom: 25px;
+            color: #4CAF50;
+            /* Icon color */
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            /* Larger heading text */
+            color: #333;
+            margin-bottom: 15px;
+            word-wrap: break-word;
+            /* Ensure words break properly */
+        }
+
+        .card p {
+            font-size: 1.3rem;
+            /* Slightly bigger content text */
+            color: #666;
+            line-height: 1.6;
+            /* Improved line spacing for readability */
+            word-wrap: break-word;
+            /* Ensure text doesn't overflow */
+            overflow-wrap: break-word;
+            /* Handle long words or URLs */
+        }
+
+        /* Make the grid responsive */
+        @media screen and (max-width: 1024px) {
+            .about-cards {
+                grid-template-columns: 1fr 1fr;
+                /* 2 cards per row on medium screens */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .about-cards {
+                grid-template-columns: 1fr;
+                /* 1 card per row on smaller screens */
+            }
+
+            .card {
+                max-width: 95%;
+                /* Adjust width to fit better */
+                padding: 20px;
+                /* Reduced padding for mobile */
+            }
+
+            .section-title {
+                font-size: 2.4rem;
+                /* Adjust section title size for small screens */
+            }
+
+            .section-text {
+                font-size: 1.2rem;
+                /* Adjust section text size for small screens */
+            }
+        }
+
+
+        /* Dropdown base style */
+        .navbar-item.dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            z-index: 1000;
+            min-width: 180px;
+        }
+
+        .dropdown-link {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .dropdown-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Show dropdown on hover */
+        .navbar-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .about-page main {
+            padding-top: 120px;
+            background-color: #f9f9f9;
+        }
+
+        .about-page .about-section h1 {
+            color: var(--bittersweet);
+            text-align: center;
+        }
+
+        .card-glow-wrapper {
+            background: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+            padding: 5px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card-glow-wrapper:hover {
+            box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.3);
+        }
+
+        .card {
+            background-color: #f8f1f1;
+            color: white;
+            border-radius: 20px;
+            padding: 20px;
+            transition: transform 0.2s ease;
+            height: 100%;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: scale(0.98);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: #00ff75;
+            margin-bottom: 15px;
+        }
+
+        /* General Layout */
+        .products-highlight {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 2em;
+            color: #333;
+        }
+
+        /* Content Container */
+        .content-container {
+            display: block;
+            /* This ensures that the content is stacked vertically */
+            margin-top: 20px;
+        }
+
+        /* Product Item */
+        .product-item {
+            width: 100%;
+            /* Full width to take up the available space */
+            padding: 20px;
+            margin-bottom: 20px;
+            /* Space between items */
+            background-color: #f9f9f9;
+            /* Light background for each item */
+            border-radius: 8px;
+            /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Soft shadow */
+        }
+
+        /* Product Title */
+        .product-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: white;
+            background-color: #4caf50;
+            /* Green background for title */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* Product Description */
+        .product-desc {
+            font-size: 1.2em;
+            /* Increase font size for larger text */
+            color: #777;
+            line-height: 1.8em;
+            /* Increase line height for better readability */
+            margin-bottom: 20px;
+            /* Extra space at the bottom */
+        }
+
+        /* Card Container */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        /* Card Styles */
+        .card {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            perspective: 1000px;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 0 5px #ffffff80;
+        }
+
+        /* Card Content */
+        .card__content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f2f2f2;
+            transform: rotateX(-90deg);
+            /* Initially hide content */
+            transform-origin: bottom;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: transparent;
+            /* Initially hide text */
+        }
+
+        /* Card Title */
+        .card__title {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+            font-weight: 700;
+        }
+
+        /* Card Description */
+        .card__description {
+            margin: 10px 0 0;
+            font-size: 14px;
+            color: #777;
+            line-height: 1.4;
+        }
+
+        /* Hover Effects */
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover .card__content {
+            transform: rotateX(0deg);
+            /* Flip content */
+            color: #333;
+            /* Show text */
+        }
+
+        /* General Styles */
+        .info-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* Card Container with Grid */
+        .card-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Both columns with equal space */
+            gap: 20px;
+            /* Space between the two columns */
+            align-items: center;
+            /* Center content vertically */
+            justify-items: center;
+            /* Center content horizontally */
+            margin-top: 20px;
+        }
+
+        /* Card Styles */
+        .card {
+            position: relative;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            width: 100%;
+            /* Ensure cards take up the full width of their column */
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover Effect */
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card Image Section */
+        .card__image {
+            background-color: #4caf50;
+            padding: 20px;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Card Content */
+        .card__content {
+            margin-top: 15px;
+        }
+
+        /* Card Title */
+        .card__title {
+            margin: 0;
+            font-size: 1.6em;
+            text-align: center;
+        }
+
+        /* Card Description */
+        .card__description {
+            font-size: 1em;
+            color: #777;
+            line-height: 1.6em;
+            text-align: justify;
+        }
+
+        /* Media Query for Small Screens */
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: 1fr;
+                /* Stack columns vertically on smaller screens */
+                gap: 15px;
+                /* Reduce gap between cards on smaller screens */
+            }
+
+            .card {
+                width: 90%;
+                /* Make cards take more space on small screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.5em;
+                /* Reduce heading size on smaller screens */
+            }
+
+            .card__title {
+                font-size: 1.3em;
+                /* Smaller card title on mobile */
+            }
+
+            .card__description {
+                font-size: 0.9em;
+                /* Smaller description text on mobile */
+            }
+        }
+
+        /* Container for horizontal layout with padding */
+        .content-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 40px;
+            /* left and right spacing */
+            margin-bottom: 40px;
+        }
+
+        /* Individual product or card */
+        .product-item,
+        .card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .product-item:hover,
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Text styling */
+        .product-title,
+        .card__title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .product-desc,
+        .card__description {
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* Optional hover effect for cards */
+        .hover-effect:hover {
+            background-color: #eef7ff;
+        }
+
+        /* Responsive layout for card-container */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 40px;
+            /* consistent left-right spacing */
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body id="top">
+
+
+    <!-- Header -->
+    <header class="header" data-header>
+        <div class="container">
+
+            <div class="overlay" data-overlay></div>
+
+            <a href="#" class="logo">
+                <img src="./assets/images/export_logo.jpg" width="160" height="80" alt="Footcap logo">
+            </a>
+
+            <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
+                <ion-icon name="menu-outline"></ion-icon>
+            </button>
+
+            <nav class="navbar" data-navbar>
+
+                <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+
+                <a href="#" class="logo">
+                    <img src="./assets/images/export_logo.jpg" width="160" height="80" alt="Footcap logo">
+                </a>
+
+                <ul class="navbar-list">
+
+                    <li class="navbar-item">
+                        <a href="index.html" class="navbar-link">Home</a>
+                    </li>
+
+                    <li class="navbar-item dropdown">
+                        <a href="#" class="navbar-link">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html" class="dropdown-link">E-Commerce</a></li>
+                            <li><a href="export.html" class="dropdown-link">Exports</a></li>
+                            <li><a href="digital-marketing.html" class="dropdown-link">Digital Marketing</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="navbar-item dropdown">
+                        <a href="#" class="navbar-link">Products</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="clothes.html" class="dropdown-link">Clothes</a></li>
+                            <li><a href="home_applicances.html" class="dropdown-link">Home Appliances</a></li>
+
+                        </ul>
+                    </li>
+
+
+
+
+
+                    <li class="navbar-item">
+                        <a href="about.html" class="navbar-link">About</a>
+                    </li>
+
+                    <li class="navbar-item">
+                        <a href="contact.html" class="navbar-link">Contact</a>
+                    </li>
+
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="section hero"
+        style="background-image: url('./assets/images/digital.jpg'); background-size: cover; background-position: center; padding: 80px 0;">
+        <div class="container">
+            <h2 class="h1 hero-title" style="color: #fff; font-size: 2.8rem; margin-bottom: 20px;">
+                Elevate Your Brand with Digital Marketing
+            </h2>
+            <p class="hero-text" style="color: #f1f1f1; font-size: 1.2rem; max-width: 800px; line-height: 1.7;">
+                we don’t just market — we amplify. Our expert digital marketing team uses cutting-edge tools and
+                data-driven strategies to grow your brand online.
+                From <strong>SEO</strong> and <strong>social media campaigns</strong> to <strong>content
+                    marketing</strong> and <strong>paid ads</strong>, we turn visibility into revenue. Whether you're a
+                startup or a global player, we create customized digital solutions that convert clicks into loyal
+                customers.
+            </p>
+            <a href="#digital-content" class="btn btn-primary" style="margin-top: 25px;">
+                <span>Discover Our Strategy</span>
+                <ion-icon name="trending-up-outline" aria-hidden="true"></ion-icon>
+            </a>
+        </div>
+    </section>
+
+
+
+
+
+    <main>
+
+        <section class="products-highlight" id="digital-content" style="padding: 50px 20px; background-color: #f8f9fb;">
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 2.5rem; color: #2c3e50;">Top Digital
+                Marketing Services</h2>
+
+            <div class="content-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 35px;">
+
+                <!-- Full-Service Digital Marketing -->
+                <div class="product-card" style="
+      width: 330px;
+      background: #ffffff;
+      border: 2px solid #3498db;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      padding: 25px;">
+                    <h3 style="color: #3498db; font-size: 1.6rem; margin-bottom: 15px;">Digital Marketing for Businesses
+                    </h3>
+                    <p style="font-size: 1.5rem; color: #333; line-height: 1.6;">
+                        We help brands grow online through targeted SEO, content creation, social strategy, and
+                        analytics. Whether you’re a startup or an enterprise, our marketing drives results where it
+                        matters.
+                    </p>
+                </div>
+
+                <!-- Website Development for Clients -->
+                <div class="product-card" style="
+      width: 330px;
+      background: #ffffff;
+      border: 2px solid #e67e22;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      padding: 25px;">
+                    <h3 style="color: #e67e22; font-size: 1.6rem; margin-bottom: 15px;">Freelance Web Development</h3>
+                    <p style="font-size: 1.5rem; color: #333; line-height: 1.6;">
+                        Need a sleek, responsive website? We build stunning, client-focused sites that load fast, look
+                        great on all devices, and help businesses stand out in today’s digital-first world.
+                    </p>
+                </div>
+
+                <!-- Google & Paid Ads -->
+                <div class="product-card" style="
+      width: 330px;
+      background: #ffffff;
+      border: 2px solid #c0392b;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      padding: 25px;">
+                    <h3 style="color: #c0392b; font-size: 1.6rem; margin-bottom: 15px;">Google & Paid Ad Campaigns</h3>
+                    <p style="font-size: 1.5rem; color: #333; line-height: 1.6;">
+                        Maximize ROI with data-backed ad strategies. We create high-converting Google, Meta, and YouTube
+                        ad campaigns that put your business in front of the right audience—fast.
+                    </p>
+                </div>
+
+
+
+            </div>
+        </section>
+
+
+    </main>
+
+
+
+
+
+    <footer class="footer" style="margin-top: 10px;">
+        <div class="footer-top section">
+            <div class="container">
+                <!-- Footer Brand Section -->
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <img src="./assets/images/export_logo.jpg" width="160" height="80" alt="Footcap logo">
+                    </a>
+
+             <!-- Social Media Links -->
+                    <ul class="social-list">
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-instagram"></ion-icon>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-facebook"></ion-icon>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-whatsapp"></ion-icon>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!-- Footer Contact Section -->
+                <div class="footer-link-box">
+                    <ul class="footer-list">
+                        <li>
+                            <p class="footer-list-title">Contact Us</p>
+                        </li>
+                        <li>
+                            <address class="footer-link">
+                                <ion-icon name="location"></ion-icon>
+                                <span class="footer-link-text">
+                                    XYZ, Madurai
+                                </span>
+                            </address>
+                        </li>
+                        <li>
+                            <a href="tel:+557343673257" class="footer-link">
+                                <ion-icon name="call"></ion-icon>
+                                <span class="footer-link-text">+91 8825861063</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:footcap@help.com" class="footer-link">
+                                <ion-icon name="mail"></ion-icon>
+                                <span class="footer-link-text">krexpo0212@gmail.com</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright">
+                    &copy; 2025 <a href="#" class="copyright-link">krexpo</a>. All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- 
+    - #GO TO TOP
+  -->
+
+    <a href="#top" class="go-top-btn" data-go-top>
+        <ion-icon name="arrow-up-outline"></ion-icon>
+    </a>
+
+
+
+
+
+    <!-- 
+    - custom js link
+  -->
+    <script src="./assets/js/script.js"></script>
+
+    <!-- 
+    - ionicon link
+  -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
