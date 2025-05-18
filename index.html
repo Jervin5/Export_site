@@ -408,26 +408,34 @@
   /*pagination*/
 
 
-.pagination button {
-  padding: 8px 12px;
-  border: none;
-  background: #eee;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: 500;
-}
+  .pagination button {
+    padding: 8px 12px;
+    border: none;
+    background: #eee;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 500;
+  }
 
-.pagination button:hover {
-  background: #ddd;
-}
+  .pagination button:hover {
+    background: #ddd;
+  }
 
-.pagination button.active-page {
-  background: #3498db;
-  color: white;
-}
+  .pagination button.active-page {
+    background: #3498db;
+    color: white;
+  }
 
-.pagination span {
-  margin: 0 5px;
+  .pagination span {
+    margin: 0 5px;
+  }
+
+  #hero-button {
+  width: fit-content;
+  padding: 12px 20px; /* optional: control spacing */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* spacing between text and icon */
 }
 
 </style>
@@ -523,10 +531,12 @@
             Shop the latest now!
           </p>
 
-          <button class="btn btn-primary" id="hero-button">
-            <a href="#productList"><span>Explore Now</span></a>
+          <a href="#productList" class="btn btn-primary" id="hero-button">
+            <span>Explore Now</span>
             <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-          </button>
+          </a>
+
+
         </div>
       </section>
 
@@ -554,94 +564,96 @@
 
       <div class="container">
 
-    <!-- Filter Buttons -->
-    <ul class="filter-list">
-      <li><button class="filter-btn active" data-filter="all">All</button></li>
-      <li><button class="filter-btn" data-filter="nightwear">Nightwear</button></li>
-      <li><button class="filter-btn" data-filter="Kitchen-Utensils">Kitchen Utensils</button></li>
-    </ul>
+        <!-- Filter Buttons -->
+        <ul class="filter-list">
+          <li><button class="filter-btn active" data-filter="all">All</button></li>
+          <li><button class="filter-btn" data-filter="nightwear">Nightwear</button></li>
+          <li><button class="filter-btn" data-filter="Kitchen-Utensils">Kitchen Utensils</button></li>
+        </ul>
 
-    <!-- Product List (Grid Layout) -->
-    <ul class="collection-list" id="productList">
-      <!-- Nightwear Products -->
-      <li class="nightwear product-item">
-        <div class="product-card" style="background-image: url('./assets/images/nighty_1.jpg')">
-          <h3>Nightwear Product 1</h3>
-          <a href="product_details.html" class="btn"
-            onclick="storeProduct('Nightwear Product 1', './assets/images/nighty_1.jpg', '₹799', 'Nightwear')">
-            <span>Explore</span>
-          </a>
-        </div>
-      </li>
-      <li class="nightwear product-item">
-        <div class="product-card" style="background-image: url('./assets/images/nighty-2.jpg')">
-          <h3>Nightwear Product 2</h3>
-          <a href="product_details.html" class="btn"
-            onclick="storeProduct('Nightwear Product 2', './assets/images/nighty-2.jpg', '₹699', 'Nightwear')">
-            <span>Explore</span>
-          </a>
-        </div>
-      </li>
-      <li class="nightwear product-item">
-        <div class="product-card" style="background-image: url('./assets/images/nighty-3.jpg')">
-          <h3>Nightwear Product 3</h3>
-          <a href="product_details.html" class="btn"
-            onclick="storeProduct('Nightwear Product 3', './assets/images/nighty-3.jpg', '₹599', 'Nightwear')">
-            <span>Explore</span>
-          </a>
-        </div>
-      </li>
-      <li class="nightwear product-item">
-        <div class="product-card" style="background-image: url('./assets/images/nighty-4.jpg')">
-          <h3>Nightwear Product 4</h3>
-          <a href="product_details.html" class="btn"
-            onclick="storeProduct('Nightwear Product 4', './assets/images/nighty-4.jpg', '₹499', 'Nightwear')">
-            <span>Explore</span>
-          </a>
-        </div>
-      </li>
-      <!-- Home Essentials Products -->
-      <li class="Kitchen-Utensils product-item">
-        <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-1.jpg')">
-          <h3 class="h4 card-title">Home Essential Product 1</h3>
-          <a href="#" class="btn btn-secondary">
-            <span>Explore</span>
-            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-          </a>
-        </div>
-      </li>
-      <li class="Kitchen-Utensils product-item">
-        <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-2.jpg')">
-          <h3 class="h4 card-title">Home Essential Product 2</h3>
-          <a href="#" class="btn btn-secondary">
-            <span>Explore</span>
-            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-          </a>
-        </div>
-      </li>
-      <li class="Kitchen-Utensils product-item">
-        <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-3.jpg')">
-          <h3 class="h4 card-title">Home Essential Product 3</h3>
-          <a href="#" class="btn btn-secondary">
-            <span>Explore</span>
-            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-          </a>
-        </div>
-      </li>
-      <li class="Kitchen-Utensils product-item">
-        <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-4.jpg')">
-          <h3 class="h4 card-title">Home Essential Product 4</h3>
-          <a href="#" class="btn btn-secondary">
-            <span>Explore</span>
-            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-          </a>
-        </div>
-      </li>
-    </ul>
-  </div>
+        <!-- Product List (Grid Layout) -->
+        <ul class="collection-list" id="productList">
+          <!-- Nightwear Products -->
+          <li class="nightwear product-item">
+            <div class="product-card" style="background-image: url('./assets/images/nighty_1.jpg')">
+              <h3>Nightwear Product 1</h3>
+              <a href="product_details.html" class="btn"
+                onclick="storeProduct('Nightwear Product 1', './assets/images/nighty_1.jpg', '₹799', 'Nightwear')">
+                <span>Explore</span>
+              </a>
 
-  <!-- Pagination -->
-  <div id="pagination" class="pagination" style="margin-top: 30px; display: flex; justify-content: center; gap: 10px;"></div>
+            </div>
+          </li>
+          <li class="nightwear product-item">
+            <div class="product-card" style="background-image: url('./assets/images/nighty-2.jpg')">
+              <h3>Nightwear Product 2</h3>
+              <a href="product_details.html" class="btn"
+                onclick="storeProduct('Nightwear Product 2', './assets/images/nighty-2.jpg', '₹699', 'Nightwear')">
+                <span>Explore</span>
+              </a>
+            </div>
+          </li>
+          <li class="nightwear product-item">
+            <div class="product-card" style="background-image: url('./assets/images/nighty-3.jpg')">
+              <h3>Nightwear Product 3</h3>
+              <a href="product_details.html" class="btn"
+                onclick="storeProduct('Nightwear Product 3', './assets/images/nighty-3.jpg', '₹599', 'Nightwear')">
+                <span>Explore</span>
+              </a>
+            </div>
+          </li>
+          <li class="nightwear product-item">
+            <div class="product-card" style="background-image: url('./assets/images/nighty-4.jpg')">
+              <h3>Nightwear Product 4</h3>
+              <a href="product_details.html" class="btn"
+                onclick="storeProduct('Nightwear Product 4', './assets/images/nighty-4.jpg', '₹499', 'Nightwear')">
+                <span>Explore</span>
+              </a>
+            </div>
+          </li>
+          <!-- Home Essentials Products -->
+          <li class="Kitchen-Utensils product-item">
+            <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-1.jpg')">
+              <h3 class="h4 card-title">Home Essential Product 1</h3>
+              <a href="#" class="btn btn-secondary">
+                <span>Explore</span>
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
+          <li class="Kitchen-Utensils product-item">
+            <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-2.jpg')">
+              <h3 class="h4 card-title">Home Essential Product 2</h3>
+              <a href="#" class="btn btn-secondary">
+                <span>Explore</span>
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
+          <li class="Kitchen-Utensils product-item">
+            <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-3.jpg')">
+              <h3 class="h4 card-title">Home Essential Product 3</h3>
+              <a href="#" class="btn btn-secondary">
+                <span>Explore</span>
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
+          <li class="Kitchen-Utensils product-item">
+            <div class="product-card" style="background-image: url('./assets/images/Kitchen Utensils-4.jpg')">
+              <h3 class="h4 card-title">Home Essential Product 4</h3>
+              <a href="#" class="btn btn-secondary">
+                <span>Explore</span>
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Pagination -->
+      <div id="pagination" class="pagination"
+        style="margin-top: 30px; display: flex; justify-content: center; gap: 10px;"></div>
 
 
 

@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+ document.addEventListener("DOMContentLoaded", function () {
   const heroData = [
     {
       title: "Discover What's New <strong>This Season</strong>",
@@ -89,51 +90,71 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroSection = document.getElementById("hero-section");
   const heroTitle = document.getElementById("hero-title");
   const heroText = document.getElementById("hero-text");
-  const heroButtonSpan = document.getElementById("hero-button").querySelector("span");
-  const heroButtonLink = document.getElementById("hero-button").querySelector("a");
+  const heroButton = document.getElementById("hero-button");
+
+  // Safely access <span> inside hero-button only if it exists
+  const heroButtonSpan = heroButton ? heroButton.querySelector("span") : null;
 
   function updateHeroContent(index) {
     const content = heroData[index];
     if (!content.showContent) return;
 
-    heroTitle.innerHTML = content.title;
-    heroText.textContent = content.text;
-    heroButtonSpan.textContent = content.button;
-    heroSection.style.backgroundImage = `url('${content.background}')`;
-    heroButtonLink.setAttribute("href", content.link);
+    if (heroTitle) heroTitle.innerHTML = content.title;
+    if (heroText) heroText.textContent = content.text;
+    if (heroButtonSpan) heroButtonSpan.textContent = content.button;
+    if (heroSection) heroSection.style.backgroundImage = `url('${content.background}')`;
+    if (heroButton) heroButton.setAttribute("href", content.link);
   }
-
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % heroData.length;
-    updateHeroContent(currentIndex);
-  }, 5000); // Switch every 5 seconds
 
   // Initial load
   updateHeroContent(currentIndex);
 
+  // Rotate every 5 seconds
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % heroData.length;
+    updateHeroContent(currentIndex);
+  }, 5000);
+});
+
+
 ///product page
 
-function selectSize(btn) {
-  document.querySelectorAll('.sizes button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-function selectColor(btn) {
-  document.querySelectorAll('.colors button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-window.onload = function () {
-  const data = JSON.parse(localStorage.getItem('selectedProduct'));
-  if (data) {
-    document.querySelector('.product-image img').src = data.image;
-    document.querySelector('.product-image img').alt = data.title;
-    document.querySelector('.product-info h1').textContent = data.title;
-    document.querySelector('.price').textContent = data.price;
-    document.querySelector('.category').innerHTML = `<strong>Category:</strong> ${data.category}`;
-    document.querySelector('.description').textContent = data.description;
+ function selectSize(btn) {
+    document.querySelectorAll('.sizes button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
   }
-}
+
+  function selectColor(btn) {
+    document.querySelectorAll('.colors button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  window.onload = function () {
+    const data = localStorage.getItem('selectedProduct');
+    
+    if (!data) {
+      console.warn("No product found in localStorage.");
+      return;
+    }
+
+    const product = JSON.parse(data);
+
+    const img = document.querySelector('.product-image img');
+    const title = document.querySelector('.product-info h1');
+    const price = document.querySelector('.price');
+    const category = document.querySelector('.category');
+    const description = document.querySelector('.description');
+
+    if (img && product.image) {
+      img.src = product.image;
+      img.alt = product.title;
+    }
+
+    if (title) title.textContent = product.title;
+    if (price) price.textContent = product.price;
+    if (category) category.innerHTML = `<strong>Category:</strong> ${product.category}`;
+    if (description) description.textContent = product.description;
+  };
 
 //index page product click 
 
